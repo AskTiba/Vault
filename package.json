@@ -4,6 +4,7 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start --dev-client",
+    "dev": "APP_VARIANT=development npx expo start",
     "ios": "expo run:ios",
     "android": "expo run:android",
     "build:dev": "eas build --profile development",
@@ -42,7 +43,9 @@
     "react-native-screens": "~4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.10",
-    "expo-updates": "~0.26.10"
+    "expo-updates": "~0.26.10",
+    "expo-splash-screen": "~0.29.18",
+    "expo-font": "~13.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

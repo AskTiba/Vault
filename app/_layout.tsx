@@ -1,4 +1,6 @@
 import '../global.css';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
 import { SQLiteProvider } from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system';
@@ -8,7 +10,7 @@ import { ActivityIndicator, View, Text } from 'react-native';
 
 const loadDatabase = async () => {
   const dbName = 'mySQLiteDB.db';
-  const dbAsset = require('~/assets/mySQLiteDB.db');
+  const dbAsset = require('../assets/mySQLiteDB.db');
   const dbUri = Asset.fromModule(dbAsset).uri;
   const dbFilePath = `${FileSystem.documentDirectory}SQLite/${dbName}`;
 
@@ -23,16 +25,34 @@ const loadDatabase = async () => {
 
 export default function Layout() {
   const [dbLoaded, setDbLoaded] = useState<boolean>(false);
+  const [loaded, error] = useFonts({
+    RubikLines: require('../assets/fonts/RubikLines-Regular.ttf'),
+    RubikMaps: require('../assets/fonts/RubikMaps-Regular.ttf'),
+    RubikMaze: require('../assets/fonts/RubikMaze-Regular.ttf'),
+  });
+
+  // useEffect(() => {
+  //   if (loaded || error) {
+  //     SplashScreen.hideAsync();
+  //   }
+  // }, [loaded, error]);
+
+  // if (!loaded && !error) {
+  //   return null;
+  // }
 
   useEffect(() => {
     loadDatabase()
-      .then(() => setDbLoaded(true))
-      .catch((e) => console.error(e));
+      .then(() => {
+        console.log('Database loaded successfully');
+        setDbLoaded(true);
+      })
+      .catch((e) => console.error('Error loading database:', e));
   }, []);
 
   if (!dbLoaded)
     return (
-      <View className="flex-1">
+      <View className="flex-1 items-center justify-center">
         <ActivityIndicator size={'large'} />
         <Text>Loading...</Text>
       </View>
@@ -41,7 +61,7 @@ export default function Layout() {
   return (
     <Suspense
       fallback={
-        <View className="flex-1 bg-red-600">
+        <View className="flex-1 items-center justify-center bg-red-600">
           <ActivityIndicator size={'large'} />
           <Text>Loading...</Text>
         </View>

@@ -8,7 +8,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production'; // Ensure NODE_ENV 
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
-    return 'com.asktiba.Vault';
+    return 'com.asktiba.Vault.dev';
   }
   if (IS_PREVIEW) {
     return 'com.asktiba.Vault.preview';
@@ -17,7 +17,7 @@ const getUniqueIdentifier = () => {
 };
 const getAppName = () => {
   if (IS_DEV) {
-    return 'Vault(Dev)';
+    return 'Vault (Dev)';
   }
   if (IS_PREVIEW) {
     return 'Vault';
@@ -48,7 +48,11 @@ const config: ExpoConfig = {
     [
       'expo-font',
       {
-        fonts: ['./assets/fonts/RubikMaze-Regular.ttf'],
+        fonts: [
+          './assets/fonts/RubikMaze-Regular.ttf',
+          './assets//fonts//RubikLines-Regular.ttf',
+          './assets//fonts//RubikMaps-Regular.ttf',
+        ],
       },
     ],
   ],
@@ -67,7 +71,7 @@ const config: ExpoConfig = {
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: 'com.asktiba.Vault',
+    bundleIdentifier: getUniqueIdentifier(),
   },
   android: {
     adaptiveIcon: {
