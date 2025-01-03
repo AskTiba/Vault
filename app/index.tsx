@@ -7,6 +7,7 @@ import { useSQLiteContext } from 'expo-sqlite';
 import TransactionList from '~/components/TransactionList';
 import { ScrollView, Text, StyleSheet, TextStyle } from 'react-native';
 import Card from '~/components/UI/Card';
+import AddTransaction from '~/components/AddTransaction';
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -28,6 +29,7 @@ export default function Home() {
       'SELECT * from Transactions ORDER BY date DESC;'
     );
     setTransactions(result);
+    console.log(JSON.stringify(transactions, null, 2));
 
     const categoriesResult = await db.getAllAsync<Category>('SELECT * from Categories;');
     setCategories(categoriesResult);
@@ -63,6 +65,24 @@ export default function Home() {
     });
   }
 
+  async function insertTransaction(transaction: Transaction) {
+    db.withTransactionAsync(async () => {
+      await db.runAsync(
+        `
+        INSERT INTO Transactions (category_id, amount, date, description, type) VALUES (?, ?, ?, ?, ?);
+      `,
+        [
+          transaction.category_id,
+          transaction.amount,
+          transaction.date,
+          transaction.description,
+          transaction.type,
+        ]
+      );
+      await getData();
+    });
+  }
+
   return (
     <>
       <Stack.Screen
@@ -79,6 +99,7 @@ export default function Home() {
         }}
       />
       <ScrollView contentContainerStyle={{ padding: 15, paddingVertical: 20 }} className="">
+        <AddTransaction insertTransaction={insertTransaction} />
         <TransactionSummary
           totalExpenses={transactionsByMonth.totalExpenses}
           totalIncome={transactionsByMonth.totalIncome}
@@ -95,7 +116,7 @@ export default function Home() {
 }
 
 function TransactionSummary({ totalIncome, totalExpenses }: TransactionsByMonth) {
-  const savings = totalIncome - totalExpenses;
+  const net_income = totalIncome - totalExpenses;
   const readablePeriod = new Date().toLocaleDateString('default', {
     month: 'long',
     year: 'numeric',
@@ -126,7 +147,7 @@ function TransactionSummary({ totalIncome, totalExpenses }: TransactionsByMonth)
           <Text style={getMoneyTextStyle(totalExpenses)}>{formatMoney(totalExpenses)}</Text>
         </Text>
         <Text style={styles.summaryText}>
-          Savings: <Text style={getMoneyTextStyle(savings)}>{formatMoney(savings)}</Text>
+          Net Income: <Text style={getMoneyTextStyle(net_income)}>{formatMoney(net_income)}</Text>
         </Text>
       </Card>
     </>

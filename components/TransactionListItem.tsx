@@ -51,7 +51,7 @@ function TransactionInfo({
     <View style={{ flexGrow: 1, gap: 6, flexShrink: 1 }}>
       <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{description}</Text>
       <Text>Transaction number {id}</Text>
-      <Text style={{ fontSize: 12, color: 'gray' }}>{new Date(date).toDateString()}</Text>
+      <Text style={{ fontSize: 12, color: 'gray' }}>{new Date(date * 1000).toDateString()}</Text>
     </View>
   );
 }
@@ -88,9 +88,10 @@ function Amount({
       <AntDesign name={iconName} size={18} color={color} />
       <AutoSizeText
         fontSize={32}
+        className='max-w-[4/5]'
         mode={ResizeTextMode.max_lines}
         numberOfLines={1}
-        style={[styles.amount, { maxWidth: '80%' }]}>
+        style={[styles.amount]}>
         ${amount}
       </AutoSizeText>
     </View>

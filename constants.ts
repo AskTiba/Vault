@@ -1,45 +1,49 @@
 export const categoryColors: { [key: string]: string } = {
-    Groceries: "#FFD700", // Gold
-    Rent: "#FF6347", // Tomato
-    Salary: "#32CD32", // LimeGreen
-    Freelancing: "#6495ED", // CornflowerBlue
-    Utilities: "#00CED1", // DarkTurquoise
-    Electronics: "#8A2BE2", // BlueViolet
-    "Dining Out": "#FFA07A", // LightSalmon
-    "Breakfast Supplies": "#FFDEAD", // NavajoWhite
-    "Household Items": "#F0E68C", // Khaki
-    "Christmas Gifts": "#FF69B4", // HotPink
-    "New Year Party Supplies": "#DB7093", // PaleVioletRed
-    "Thanksgiving Groceries": "#CD853F", // Peru
-    Bonus: "#6B8E23", // OliveDrab
-    "Consulting Work": "#4682B4", // SteelBlue
-    "Part-Time Job": "#DAA520", // GoldenRod
-    "Online Sales": "#20B2AA", // LightSeaGreen
-    "Freelance Writing": "#778899", // LightSlateGray
-    "End of Year Bonus": "#5F9EA0", // CadetBlue
-    "Thanksgiving Freelance": "#BDB76B", // DarkKhaki
-    Default: "#D3D3D3", // LightGray
-  };
-  
-  export const categoryEmojies: { [key: string]: string } = {
-    Groceries: "🛒",
-    Rent: "🏠",
-    Salary: "💰",
-    Freelancing: "👨🏻‍💻",
-    Utilities: "💡",
-    Electronics: "🖥️",
-    "Dining Out": "🍽️",
-    "Breakfast Supplies": "🥐",
-    "Household Items": "🏡",
-    "Christmas Gifts": "🎁",
-    "New Year Party Supplies": "🎉",
-    "Thanksgiving Groceries": "🦃",
-    Bonus: "🎊",
-    "Consulting Work": "💼",
-    "Part-Time Job": "⌚",
-    "Online Sales": "🛒",
-    "Freelance Writing": "✍️",
-    "End of Year Bonus": "🍾",
-    "Thanksgiving Freelance": "🍂",
-    Default: "🫰🏼",
-  };
+  // Income Categories
+  Salary: '#32CD32', // LimeGreen
+  Freelancing: '#6495ED', // CornflowerBlue
+  Investments: '#FFD700', // Gold
+  Gifts: '#FF69B4', // HotPink
+  Refunds: '#6B8E23', // OliveDrab
+  'Side Hustles': '#20B2AA', // LightSeaGreen
+  Other: '#D3D3D3', // LightGray
+
+  // Expense Categories
+  Utilities: '#00CED1', // DarkTurquoise
+  Housing: '#FF6347', // Tomato
+  Groceries: '#FFD700', // Gold
+  Transportation: '#FFA07A', // LightSalmon
+  Entertainment: '#8A2BE2', // BlueViolet
+  Dining: '#FFA07A', // LightSalmon
+  Health: '#FF6347', // Tomato
+  Education: '#32CD32', // LimeGreen
+  Subscriptions: '#4682B4', // SteelBlue
+  Shopping: '#FF69B4', // HotPink
+  Travel: '#20B2AA', // LightSeaGreen
+  Miscellaneous: '#BDB76B', // DarkKhaki
+};
+
+export const categoryEmojies: { [key: string]: string } = {
+  // Income Categories
+  Salary: '💰',
+  Freelancing: '👨🏻‍💻',
+  Investments: '💸',
+  Gifts: '🎁',
+  Refunds: '💵',
+  'Side Hustles': '🚀',
+  Other: '🫰🏼',
+
+  // Expense Categories
+  Utilities: '💡',
+  Housing: '🏠',
+  Groceries: '🛒',
+  Transportation: '🚗',
+  Entertainment: '🎮',
+  Dining: '🍽️',
+  Health: '💉',
+  Education: '🎓',
+  Subscriptions: '📱',
+  Shopping: '🛍️',
+  Travel: '✈️',
+  Miscellaneous: '📝',
+};
