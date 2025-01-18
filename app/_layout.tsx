@@ -14,12 +14,20 @@ const loadDatabase = async () => {
   const dbUri = Asset.fromModule(dbAsset).uri;
   const dbFilePath = `${FileSystem.documentDirectory}SQLite/${dbName}`;
 
+  console.log('Database URI:', dbUri);
+  console.log('Checking if database exists at:', dbFilePath);
+
   const fileInfo = await FileSystem.getInfoAsync(dbFilePath);
+  console.log('File Info:', fileInfo);
+
   if (!fileInfo.exists) {
+    console.log('Database does not exist. Creating directory and downloading...');
     await FileSystem.makeDirectoryAsync(`${FileSystem.documentDirectory}SQLite`, {
       intermediates: true,
     });
     await FileSystem.downloadAsync(dbUri, dbFilePath);
+  } else {
+    console.log('Database already exists.');
   }
 };
 
