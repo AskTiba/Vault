@@ -102,13 +102,13 @@ export default function AddTransaction({
               />
             ))}
           </Card>
-          <View className="my-5 flex-row justify-around">
+          <View className="mt-4 flex-row justify-evenly ">
             <Button
               title="Cancel"
               className="bg-red-600"
               onPress={() => setIsAddingTransaction(false)}
             />
-            <Button title="Save" onPress={handleSave} />
+            <Button className="" title="Save" onPress={handleSave} />
           </View>
         </View>
       ) : (
@@ -139,13 +139,13 @@ function CategoryButton({
       }}
       activeOpacity={0.6}
       style={{
-        height: 40,
+        height: 45,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: isSelected ? '#007BFF20' : '#00000020',
-        borderRadius: 15,
-        marginBottom: 6,
+        borderRadius: 6,
+        marginBottom: 8,
       }}>
       <Text
         style={{
